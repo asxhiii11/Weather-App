@@ -67,11 +67,3 @@ Weather-App/
 * Built by Mohamed Ashik
 * Weather data provided by your chosen weather API (e.g., OpenWeatherMap)
 
----
-
-If you'd like, I can now:
-
-* Insert an ES6 `main.js` example showing `fetch` with `async/await` and module export/import
-* Add short badges or a one-line project description for your GitHub repo
-
-Tell me which you'd like and I will add it directly to this document.
