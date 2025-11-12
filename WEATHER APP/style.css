@@ -1,0 +1,228 @@
+/* Basic Reset and Page Setup */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    display: grid;
+    place-items: center;
+    min-height: 100vh;
+    overflow: hidden;
+    background-color: #0d324d; /* Fallback */
+}
+
+
+body::before {
+    content: '';
+    position: fixed;
+    top: -10px;
+    left: -10px;
+    width: calc(100% + 20px);
+    height: calc(100% + 20px);
+    background: linear-gradient(-45deg, #0d324d, #7f5a83, #23a6d5, #c06c84);
+    background-size: 400% 400%;
+    animation: gradientAnimation 15s ease infinite;
+    filter: blur(8px);
+    z-index: -1;
+}
+
+/* The Weather Card */
+.weather-card {
+    position: relative;
+    width: 90%;
+    max-width: 400px;
+    background: linear-gradient(135deg, #62a5f5, #2b77c5); /* Static Value */
+    color: #ffffff; /* Static Value */
+    padding: 2rem;
+    border-radius: 1.5rem;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15); /* Static Value */
+    text-align: center;
+    overflow: hidden;
+    z-index: 1;
+    transition: background 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Search Container */
+.search-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+}
+
+.search-container input[type="text"] {
+    flex-grow: 1;
+    padding: 0.75rem 1.25rem;
+    border: none;
+    outline: none;
+    border-radius: 50px;
+    font-size: 1rem;
+    color: #333; /* Static Value */
+    background-color: #ffffff; /* Static Value */
+    margin-right: 0.5rem;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.search-container button {
+    background-color: #ffffff; /* Static Value */
+    border: none;
+    outline: none;
+    cursor: pointer;
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    font-size: 1.2rem;
+    color: #2b77c5; /* Static Value */
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.search-container button:hover {
+    filter: brightness(0.9);
+}
+
+/* Weather Icon */
+#weather-icon {
+    width: 120px;
+    height: 120px;
+    margin: 0 auto;
+    display: none;
+    filter: drop-shadow(0 5px 5px rgba(0, 0, 0, 0.2));
+}
+
+/* Loader */
+.loader {
+    display: none;
+    width: 60px;
+    height: 60px;
+    border: 5px solid #ffffff;
+    border-bottom-color: transparent;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+@keyframes spin {
+    0% {
+        transform: translate(-50%, -50%) rotate(0deg);
+    }
+    100% {
+        transform: translate(-50%, -50%) rotate(360deg);
+    }
+}
+
+/* Error Animation */
+.error-shake {
+    animation: shake 0.5s ease;
+}
+
+@keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    10%, 30%, 50%, 70%, 90% { transform: translateX(-10px); }
+    20%, 40%, 60%, 80% { transform: translateX(10px); }
+}
+
+/* Weather Info Display */
+.weather-info.loading {
+    display: none;
+}
+
+#city-name {
+    font-size: 2.25rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+}
+
+#temperature {
+    font-size: 4rem;
+    font-weight: 700;
+    margin: 0.5rem 0;
+}
+
+#description {
+    font-size: 1.25rem;
+    font-weight: 500;
+    text-transform: capitalize;
+    margin-bottom: 2rem;
+}
+
+.weather-details {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.detail-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.detail-item span:first-child {
+    font-size: 0.9rem;
+    font-weight: 400;
+    color: #e0e0e0; /* Static Value */
+}
+
+.detail-item span:last-child {
+    font-size: 1.1rem;
+    font-weight: 600;
+}
+
+/* Background Animation */
+@keyframes gradientAnimation {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+/* --- NEW: MOBILE RESPONSIVE ---
+Adjusts sizes for screens 480px or smaller 
+*/
+@media (max-width: 480px) {
+    .weather-card {
+        padding: 1.5rem; /* Smaller padding */
+    }
+
+    #weather-icon {
+        width: 100px; /* Smaller icon */
+        height: 100px;
+    }
+
+    #city-name {
+        font-size: 2rem; /* Smaller font */
+    }
+
+    #temperature {
+        font-size: 3.5rem; /* Smaller font */
+    }
+
+    #description {
+        font-size: 1.1rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .search-container input[type="text"] {
+        padding: 0.6rem 1rem; /* Smaller search bar */
+        font-size: 0.9rem;
+    }
+
+    .search-container button {
+        width: 40px; /* Smaller search button */
+        height: 40px;
+        font-size: 1.1rem;
+    }
+
+    .detail-item span:first-child {
+        font-size: 0.8rem; /* Smaller details */
+    }
+
+    .detail-item span:last-child {
+        font-size: 1rem; /* Smaller details */
+    }
+}
